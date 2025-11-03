@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cereal Hub</title>
+    <!-- Load Google Font: Roboto Serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Use Roboto Serif font */
+        body {
+            font-family: "Roboto Serif", serif;
+        }
+        /* Custom styles for the kiosk feel */
+        .kiosk-screen {
+            display: none; /* Hidden by default */
+        }
+        .kiosk-screen.active {
+            display: flex; /* Shown when active */
+        }
+    </style>
+</head>
+<body class="bg-[#fdf1d5] flex items-center justify-center min-h-screen p-4 md:p-0">
+
+    <!-- Responsive container: Portrait by default, landscape on 'md' screens and up -->
+    <div class="w-full max-w-md md:max-w-4xl mx-auto bg-[#fdf1d5] rounded-2xl shadow-xl overflow-hidden h-[800px] md:h-[600px]">
+        <!-- Main content area that will switch between slides -->
+        <div class="flex flex-col h-full">
+
+            <!-- Slide 1: Start Screen -->
+            <div id="slide-start" class="kiosk-screen active flex-col h-full justify-center items-center text-center p-8 bg-[#fdf1d5] text-[#ae0c34]">
+                <h1 class="text-5xl font-bold mb-4">Cereal Hub</h1>
+                <p class="text-xl mb-12">Your cereal adventure starts here.</p>
+                <button onclick="showSlide('slide-language')" class="bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-12 rounded-full text-2xl shadow-lg transition-transform transform hover:scale-105">
+                    Start / Bắt đầu
+                </button>
+            </div>
+
+            <!-- Slide 2: Language Choice -->
+            <div id="slide-language" class="kiosk-screen relative flex-col h-full justify-center items-center text-center p-8">
+                <button onclick="showSlide('slide-start')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mb-8 text-[#ae0c34]">Choose your language</h2>
+                <!-- Responsive flex: col by default, row on 'md' screens -->
+                <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
+                    <button onclick="setLanguage('vi')" class="w-64 bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                        Tiếng Việt
+                    </button>
+                    <button onclick="setLanguage('en')" class="w-64 bg-white text-[#ae0c34] border border-[#ae0c34]/30 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                        English
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 3: Cereal Choice (Vietnamese) -->
+            <div id="slide-cereal-vi" class="kiosk-screen relative flex-col h-full justify-start items-center p-6 md:p-8 overflow-y-auto">
+                <button onclick="showSlide('slide-language')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mt-8 mb-8 text-[#ae0c34]">Vui lòng chọn loại ngũ cốc</h2>
+                <div class="w-full space-y-4">
+                    <div class="flex items-center w-full space-x-4">
+                        <button onclick="selectCereal('Calbee')" class="flex-grow bg-white border-2 border-[#ae0c34]/30 text-[#ae0c34] font-semibold p-4 rounded-lg text-lg shadow-sm text-left transition-all hover:border-[#ae0c34] hover:shadow-md flex items-center space-x-4">
+                            <img src="https://emon.vn/images/s/ngu-coc-calbee-frugra-trai-cay-750g-hang-noi-dia/nextImageExportOptimizer/ngu-coc-calbee-hang-noi-dia-nhat-1-opt-1200.WEBP" alt="Calbee Cereal" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover flex-shrink-0">
+                            <span class="flex-grow text-base md:text-lg">Vị nguyên bản - Calbee</span>
+                        </button>
+                        <span class="text-base md:text-lg font-semibold text-[#ae0c34] w-24 text-right">20.000 VND</span>
+                    </div>
+                    <div class="flex items-center w-full space-x-4">
+                        <button onclick="selectCereal('Koko Krunch')" class="flex-grow bg-white border-2 border-[#ae0c34]/30 text-[#ae0c34] font-semibold p-4 rounded-lg text-lg shadow-sm text-left transition-all hover:border-[#ae0c34] hover:shadow-md flex items-center space-x-4">
+                            <img src="https://cdn.tgdd.vn/Products/Images/2903/83781/bhx/ngu-coc-nestle-koko-krunch-vi-socola-hop-150g-202304100914509096.jpg" alt="Koko Krunch Cereal" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover flex-shrink-0">
+                            <span class="flex-grow text-base md:text-lg">Vị socola - Koko Krunch Nestlé</span>
+                        </button>
+                        <span class="text-base md:text-lg font-semibold text-[#ae0c34] w-24 text-right">20.000 VND</span>
+                    </div>
+                    <div class="flex items-center w-full space-x-4">
+                        <button onclick="selectCereal('Kelloggs Fruit')" class="flex-grow bg-white border-2 border-[#ae0c34]/30 text-[#ae0c34] font-semibold p-4 rounded-lg text-lg shadow-sm text-left transition-all hover:border-[#ae0c34] hover:shadow-md flex items-center space-x-4">
+                            <img src="https://cdn.tgdd.vn/Products/Images/2903/85247/bhx/-202209010916419922.jpg" alt="Kellogg's Fruit Cereal" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover flex-shrink-0">
+                            <span class="flex-grow text-base md:text-lg">Vị trái cây (ngũ sắc) - Kellogg’s</span>
+                        </button>
+                        <span class="text-base md:text-lg font-semibold text-[#ae0c34] w-24 text-right">20.000 VND</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3: Cereal Choice (English) -->
+            <div id="slide-cereal-en" class="kiosk-screen relative flex-col h-full justify-start items-center p-6 md:p-8 overflow-y-auto">
+                <button onclick="showSlide('slide-language')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mt-8 mb-8 text-[#ae0c34]">Please choose your cereal</h2>
+                <div class="w-full space-y-4">
+                    <div class="flex items-center w-full space-x-4">
+                        <button onclick="selectCereal('Calbee')" class="flex-grow bg-white border-2 border-[#ae0c34]/30 text-[#ae0c34] font-semibold p-4 rounded-lg text-lg shadow-sm text-left transition-all hover:border-[#ae0c34] hover:shadow-md flex items-center space-x-4">
+                            <img src="https://emon.vn/images/s/ngu-coc-calbee-frugra-trai-cay-750g-hang-noi-dia/nextImageExportOptimizer/ngu-coc-calbee-hang-noi-dia-nhat-1-opt-1200.WEBP" alt="Calbee Cereal" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover flex-shrink-0">
+                            <span class="flex-grow text-base md:text-lg">Original Flavor - Calbee</span>
+                        </button>
+                        <span class="text-base md:text-lg font-semibold text-[#ae0c34] w-24 text-right">20,000 VND</span>
+                    </div>
+                    <div class="flex items-center w-full space-x-4">
+                        <button onclick="selectCereal('Koko Krunch')" class="flex-grow bg-white border-2 border-[#ae0c34]/30 text-[#ae0c34] font-semibold p-4 rounded-lg text-lg shadow-sm text-left transition-all hover:border-[#ae0c34] hover:shadow-md flex items-center space-x-4">
+                            <img src="https://cdn.tgdd.vn/Products/Images/2903/83781/bhx/ngu-coc-nestle-koko-krunch-vi-socola-hop-150g-202304100914509096.jpg" alt="Koko Krunch Cereal" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover flex-shrink-0">
+                            <span class="flex-grow text-base md:text-lg">Chocolate Flavor - Koko Krunch Nestlé</span>
+                        </button>
+                        <span class="text-base md:text-lg font-semibold text-[#ae0c34] w-24 text-right">20,000 VND</span>
+                    </div>
+                    <div class="flex items-center w-full space-x-4">
+                        <button onclick="selectCereal('Kelloggs Fruit')" class="flex-grow bg-white border-2 border-[#ae0c34]/30 text-[#ae0c34] font-semibold p-4 rounded-lg text-lg shadow-sm text-left transition-all hover:border-[#ae0c34] hover:shadow-md flex items-center space-x-4">
+                            <img src="https://cdn.tgdd.vn/Products/Images/2903/85247/bhx/-202209010916419922.jpg" alt="Kellogg's Fruit Cereal" class="w-16 h-16 md:w-20 md:h-20 rounded-md object-cover flex-shrink-0">
+                            <span class="flex-grow text-base md:text-lg">Fruit Flavor (Colorful) - Kellogg’s</span>
+                        </button>
+                        <span class="text-base md:text-lg font-semibold text-[#ae0c34] w-24 text-right">20,000 VND</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Order Options (Vietnamese) -->
+            <div id="slide-options-vi" class="kiosk-screen relative flex-col h-full justify-between p-6 md:p-8">
+                <button onclick="showSlide(currentLanguage === 'vi' ? 'slide-cereal-vi' : 'slide-cereal-en')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <!-- Responsive flex: col by default, row on 'md' screens -->
+                <div class="w-full mt-12 md:mt-8 flex flex-col md:flex-row gap-8 flex-grow overflow-y-auto">
+                    <div class="flex-1"> <!-- Milk Section -->
+                        <h2 class="text-2xl font-bold mb-4 text-[#ae0c34]">Chọn loại sữa</h2>
+                        <div class="grid grid-cols-3 gap-2 md:gap-4 mb-8">
+                            <button id="vi-milk-1" onclick="selectOption('milk', 'Có đường', 'vi-milk-1')" class="option-btn border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-2 rounded-lg shadow-sm transition-all hover:border-[#ae0c34]">Có đường</button>
+                            <button id="vi-milk-2" onclick="selectOption('milk', 'Ít đường', 'vi-milk-2')" class="option-btn border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-2 rounded-lg shadow-sm transition-all hover:border-[#ae0c34]">Ít đường</button>
+                            <button id="vi-milk-3" onclick="selectOption('milk', 'Không đường', 'vi-milk-3')" class="option-btn border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-2 rounded-lg shadow-sm transition-all hover:border-[#ae0c34]">Không đường</button>
+                        </div>
+                    </div>
+                    <div class="flex-1"> <!-- Topping Section -->
+                        <h2 class="text-2xl font-bold mb-4 text-[#ae0c34]">Chọn Topping</h2>
+                        <div class="space-y-3">
+                            <button id="vi-topping-1" onclick="toggleTopping('Dâu sấy', 5000, 'vi-topping-1')" class="option-btn w-full border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-4 rounded-lg shadow-sm flex justify-between items-center transition-all hover:border-[#ae0c34]">
+                                <span>Dâu sấy</span>
+                                <span>+5.000 VND</span>
+                            </button>
+                            <button id="vi-topping-2" onclick="toggleTopping('Chuối sấy', 5000, 'vi-topping-2')" class="option-btn w-full border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-4 rounded-lg shadow-sm flex justify-between items-center transition-all hover:border-[#ae0c34]">
+                                <span>Chuối sấy</span>
+                                <span>+5.000 VND</span>
+                            </button>
+                            <button id="vi-topping-3" onclick="toggleTopping('Các loại hạt', 5000, 'vi-topping-3')" class="option-btn w-full border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-4 rounded-lg shadow-sm flex justify-between items-center transition-all hover:border-[#ae0c34]">
+                                <span>Các loại hạt</span>
+                                <span>+5.000 VND</span>
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- Close flex-row -->
+
+                <div class="w-full mt-auto pt-4"> <!-- Use mt-auto to push to bottom, pt-4 for spacing -->
+                    <div class="flex justify-between items-center text-2xl font-bold mb-6">
+                        <span class="text-[#ae0c34]">Thành tiền:</span>
+                        <span id="total-vi" class="text-[#ae0c34]">0 VND</span>
+                    </div>
+                    <button id="checkout-btn-vi" onclick="showSlide('slide-payment-vi')" class="w-full bg-[#ae0c34] text-[#fdf1d5] font-bold py-5 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105 flex items-center justify-center space-x-2">
+                        <span>Thanh toán</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 4: Order Options (English) -->
+            <div id="slide-options-en" class="kiosk-screen relative flex-col h-full justify-between p-6 md:p-8">
+                <button onclick="showSlide(currentLanguage === 'vi' ? 'slide-cereal-vi' : 'slide-cereal-en')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <!-- Responsive flex: col by default, row on 'md' screens -->
+                <div class="w-full mt-12 md:mt-8 flex flex-col md:flex-row gap-8 flex-grow overflow-y-auto">
+                    <div class="flex-1"> <!-- Milk Section -->
+                        <h2 class="text-2xl font-bold mb-4 text-[#ae0c34]">Choose milk type</h2>
+                        <div class="grid grid-cols-3 gap-2 md:gap-4 mb-8">
+                            <button id="en-milk-1" onclick="selectOption('milk', 'Sweetened', 'en-milk-1')" class="option-btn border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-2 rounded-lg shadow-sm transition-all hover:border-[#ae0c34]">Sweetened</button>
+                            <button id="en-milk-2" onclick="selectOption('milk', 'Less Sugar', 'en-milk-2')" class="option-btn border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-2 rounded-lg shadow-sm transition-all hover:border-[#ae0c34]">Less Sugar</button>
+                            <button id="en-milk-3" onclick="selectOption('milk', 'Unsweetened', 'en-milk-3')" class="option-btn border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-2 rounded-lg shadow-sm transition-all hover:border-[#ae0c34]">Unsweetened</button>
+                        </div>
+                    </div>
+                    <div class="flex-1"> <!-- Topping Section -->
+                        <h2 class="text-2xl font-bold mb-4 text-[#ae0c34]">Choose Toppings</h2>
+                        <div class="space-y-3">
+                            <button id="en-topping-1" onclick="toggleTopping('Dried Strawberry', 5000, 'en-topping-1')" class="option-btn w-full border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-4 rounded-lg shadow-sm flex justify-between items-center transition-all hover:border-[#ae0c34]">
+                                <span>Dried Strawberry</span>
+                                <span>+5,000 VND</span>
+                            </button>
+                            <button id="en-topping-2" onclick="toggleTopping('Dried Banana', 5000, 'en-topping-2')" class="option-btn w-full border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-4 rounded-lg shadow-sm flex justify-between items-center transition-all hover:border-[#ae0c34]">
+                                <span>Dried Banana</span>
+                                <span>+5,000 VND</span>
+                            </button>
+                            <button id="en-topping-3" onclick="toggleTopping('Mixed Nuts', 5000, 'en-topping-3')" class="option-btn w-full border-2 border-[#ae0c34]/30 text-[#ae0c34] py-4 px-4 rounded-lg shadow-sm flex justify-between items-center transition-all hover:border-[#ae0c34]">
+                                <span>Mixed Nuts</span>
+                                <span>+5,000 VND</span>
+                            </button>
+                        </div>
+                    </div>
+                </div> <!-- Close flex-row -->
+
+                <div class="w-full mt-auto pt-4"> <!-- Use mt-auto to push to bottom, pt-4 for spacing -->
+                    <div class="flex justify-between items-center text-2xl font-bold mb-6">
+                        <span class="text-[#ae0c34]">Total:</span>
+                        <span id="total-en" class="text-[#ae0c34]">0 VND</span>
+                    </div>
+                    <button id="checkout-btn-en" onclick="showSlide('slide-payment-en')" class="w-full bg-[#ae0c34] text-[#fdf1d5] font-bold py-5 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105 flex items-center justify-center space-x-2">
+                        <span>Checkout</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slide 5: Payment Method (Vietnamese) -->
+            <div id="slide-payment-vi" class="kiosk-screen relative flex-col h-full justify-center items-center text-center p-8">
+                <button onclick="showSlide('slide-options-vi')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mb-8 text-[#ae0c34]">Phương thức thanh toán</h2>
+                <!-- Responsive flex: col by default, row on 'md' screens -->
+                <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
+                    <button onclick="showSlide('slide-qr-vi')" class="w-64 bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                        Chuyển khoản
+                    </button>
+                    <button onclick="showSlide('slide-success-vi')" class="w-64 bg-white text-[#ae0c34] border border-[#ae0c34]/30 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                        Tiền mặt
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Payment Method (English) -->
+            <div id="slide-payment-en" class="kiosk-screen relative flex-col h-full justify-center items-center text-center p-8">
+                <button onclick="showSlide('slide-options-en')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mb-8 text-[#ae0c34]">Payment Method</h2>
+                <!-- Responsive flex: col by default, row on 'md' screens -->
+                <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
+                    <button onclick="showSlide('slide-qr-en')" class="w-64 bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                        Bank Transfer
+                    </button>
+                    <button onclick="showSlide('slide-success-en')" class="w-64 bg-white text-[#ae0c34] border border-[#ae0c34]/30 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                        Cash
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 6: QR Code (Vietnamese) -->
+            <div id="slide-qr-vi" class="kiosk-screen relative flex-col h-full justify-center items-center text-center p-8">
+                <button onclick="showSlide('slide-payment-vi')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mb-4 text-[#ae0c34]">Phương thức thanh toán</h2>
+                <p class="text-lg text-[#ae0c34] mb-6">Vui lòng quét mã QR để thanh toán</p>
+                <!-- Placeholder for QR Code -->
+                <div class="w-48 h-48 md:w-64 md:h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
+                    <img src="https://placehold.co/256x256/e2e8f0/333?text=QR+Code" alt="QR Code Placeholder" class="rounded-lg w-full h-full object-cover"/>
+                </div>
+                <!-- <p class="text-sm text-[#ae0c34]">Hoặc đợi nhân viên của chúng tôi...</p> -->
+                <button onclick="showSlide('slide-success-vi')" class="mt-8 text-[#ae0c34] font-semibold inline-flex items-center space-x-1">
+                    <span>Đã thanh toán</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Slide 6: QR Code (English) -->
+            <div id="slide-qr-en" class="kiosk-screen relative flex-col h-full justify-center items-center text-center p-8">
+                <button onclick="showSlide('slide-payment-en')" class="absolute top-6 left-6 text-[#ae0c34] hover:text-[#ae0c34]/80 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                    </svg>
+                </button>
+                <h2 class="text-3xl font-bold mb-4 text-[#ae0c34]">Payment Method</h2>
+                <p class="text-lg text-[#ae0c34] mb-6">Please scan the QR code to pay</p>
+                <!-- Placeholder for QR Code -->
+                <div class="w-48 h-48 md:w-64 md:h-64 bg-gray-200 rounded-lg flex items-center justify-center mb-6">
+                    <img src="https://placehold.co/256x256/e2e8f0/333?text=QR+Code" alt="QR Code Placeholder" class="rounded-lg w-full h-full object-cover"/>
+                </div>
+                <!-- <p class="text-sm text-[#ae0c34]">Or please wait for our staff...</p> -->
+                <button onclick="showSlide('slide-success-en')" class="mt-8 text-[#ae0c34] font-semibold inline-flex items-center space-x-1">
+                    <span>I have paid</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l7-7m7-7H3" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Slide 7: Success (Vietnamese) -->
+            <div id="slide-success-vi" class="kiosk-screen flex-col h-full justify-center items-center text-center p-8">
+                <div id="loader-vi" class="flex flex-col items-center">
+                    <!-- Simple CSS Loader -->
+                    <div class="w-16 h-16 border-4 border-[#ae0c34] border-t-transparent rounded-full animate-spin mb-6"></div>
+                    <p class="text-xl text-[#ae0c34]">Vui lòng đợi...</p>
+                </div>
+                <div id="success-msg-vi" class="hidden flex-col items-center">
+                    <img src="https://placehold.co/400x200/a5b4fc/312e81?text=Enjoy+Your+Cereal!" alt="Cereal" class="rounded-lg mb-8 w-full max-w-sm object-cover"/>
+                    <h2 class="text-4xl font-bold text-green-600">Thanh toán thành công!</h2>
+                    <p class="text-xl text-[#ae0c34] mt-2">Cảm ơn bạn!</p>
+                </div>
+            </div>
+            
+            <!-- Slide 7: Success (English) -->
+            <div id="slide-success-en" class="kiosk-screen flex-col h-full justify-center items-center text-center p-8">
+                <div id="loader-en" class="flex flex-col items-center">
+                    <!-- Simple CSS Loader -->
+                    <div class="w-16 h-16 border-4 border-[#ae0c34] border-t-transparent rounded-full animate-spin mb-6"></div>
+                    <p class="text-xl text-[#ae0c34]">Please wait...</p>
+                </div>
+                <div id="success-msg-en" class="hidden flex-col items-center">
+                    <img src="https://placehold.co/400x200/a5b4fc/312e81?text=Enjoy+Your+Cereal!" alt="Cereal" class="rounded-lg mb-8 w-full max-w-sm object-cover"/>
+                    <h2 class="text-4xl font-bold text-green-600">Payment Successful!</h2>
+                    <p class="text-xl text-[#ae0c34] mt-2">Thank you!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'vi';
+        let currentSlide = 'slide-start';
+        
+        // Order details
+        let order = {
+            cereal: '',
+            basePrice: 0,
+            milk: '',
+            toppings: {} // { name: price }
+        };
+
+        // Function to show a specific slide
+        function showSlide(slideId) {
+            // Hide current slide
+            document.getElementById(currentSlide).classList.remove('active');
+            
+            // Show new slide
+            document.getElementById(slideId).classList.add('active');
+            currentSlide = slideId;
+
+            // Handle success animation
+            if (slideId === 'slide-success-vi' || slideId === 'slide-success-en') {
+                runSuccessAnimation(currentLanguage);
+            }
+        }
+        
+        // Set language and go to cereal choice
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            if (lang === 'vi') {
+                showSlide('slide-cereal-vi');
+            } else {
+                showSlide('slide-cereal-en');
+            }
+            resetOrder();
+        }
+
+        // Reset order state
+        function resetOrder() {
+             order = {
+                cereal: '',
+                basePrice: 0,
+                milk: '',
+                toppings: {}
+            };
+            // Clear all selections
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                btn.classList.add('border-[#ae0c34]/30', 'text-[#ae0c34]');
+            });
+            updateTotal();
+            checkMilkSelection(); // Check button state on reset
+        }
+
+        // Select Cereal
+        function selectCereal(name) {
+            order.cereal = name;
+            order.basePrice = 20000; // Updated price
+            
+            updateTotal();
+            
+            if (currentLanguage === 'vi') {
+                showSlide('slide-options-vi');
+            } else {
+                showSlide('slide-options-en');
+            }
+        }
+
+        // Select one-choice options like milk
+        function selectOption(type, value, elementId) {
+            order[type] = value;
+            
+            // Clear previous selection in this group
+            let milkPrefix = currentLanguage === 'vi' ? 'vi-milk-' : 'en-milk-';
+            for (let i = 1; i <= 3; i++) {
+                const btn = document.getElementById(milkPrefix + i);
+                if (btn) {
+                    btn.classList.remove('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                    btn.classList.add('border-[#ae0c34]/30', 'text-[#ae0c34]');
+                }
+            }
+            
+            // Highlight new selection
+            const el = document.getElementById(elementId);
+            if (el) {
+                el.classList.add('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                el.classList.remove('border-[#ae0c34]/30', 'text-[#ae0c34]');
+            }
+            
+            // Check milk selection if the type is milk
+            if (type === 'milk') {
+                checkMilkSelection();
+            }
+        }
+
+
+        // Add or remove multi-choice options like toppings
+        function toggleTopping(name, price, elementId) {
+            const el = document.getElementById(elementId);
+            if (order.toppings[name]) {
+                // Remove topping
+                delete order.toppings[name];
+                el.classList.remove('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                el.classList.add('border-[#ae0c34]/30', 'text-[#ae0c34]');
+            } else {
+                // Add topping
+                order.toppings[name] = price;
+                el.classList.add('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                el.classList.remove('border-[#ae0c34]/30', 'text-[#ae0c34]');
+            }
+            updateTotal();
+        }
+        
+        // Update total price display
+        function updateTotal() {
+            let total = order.basePrice;
+            for (const price of Object.values(order.toppings)) {
+                total += price;
+            }
+            
+            // Format to VND
+            const formattedTotal = total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }).replace('VND', 'VND');
+
+            if (currentLanguage === 'vi') {
+                document.getElementById('total-vi').innerText = formattedTotal;
+            } else {
+                document.getElementById('total-en').innerText = formattedTotal;
+            }
+        }
+        
+        // New function to check milk selection and update button state
+        function checkMilkSelection() {
+            const btnVI = document.getElementById('checkout-btn-vi');
+            const btnEN = document.getElementById('checkout-btn-en');
+            
+            if (order.milk) { // If milk is selected
+                btnVI.disabled = false;
+                btnEN.disabled = false;
+                btnVI.classList.remove('opacity-50', 'cursor-not-allowed');
+                btnEN.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else { // If no milk is selected
+                btnVI.disabled = true;
+                btnEN.disabled = true;
+                btnVI.classList.add('opacity-50', 'cursor-not-allowed');
+                btnEN.classList.add('opacity-50', 'cursor-not-allowed');
+            }
+        }
+        
+        // Run the "loading" and "success" animation
+        function runSuccessAnimation(lang) {
+            const loaderId = `loader-${lang}`;
+            const msgId = `success-msg-${lang}`;
+            
+            // Show loader, hide message
+            document.getElementById(loaderId).style.display = 'flex';
+            document.getElementById(msgId).style.display = 'none';
+
+            // Wait 2 seconds
+            setTimeout(() => {
+                // Hide loader, show message
+                document.getElementById(loaderId).style.display = 'none';
+                document.getElementById(msgId).style.display = 'flex';
+                
+                // Go back to start after 3 more seconds
+                setTimeout(() => {
+                    showSlide('slide-start');
+                }, 3000);
+            }, 2000);
+        }
+
+        // Initial setup: check milk selection to disable buttons
+        checkMilkSelection();
+
+    </script>
+</body>
+</html>
