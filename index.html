@@ -24,18 +24,18 @@
         }
     </style>
 </head>
-<body class="bg-[#fdf1d5] flex items-center justify-center min-h-screen p-4 md:p-0">
+<body class="bg-[#f5f3e7] flex items-center justify-center min-h-screen p-4 md:p-0">
 
     <!-- Responsive container: Portrait by default, landscape on 'md' screens and up -->
-    <div class="w-full max-w-md md:max-w-4xl mx-auto bg-[#fdf1d5] rounded-2xl shadow-xl overflow-hidden h-[800px] md:h-[600px]">
+    <div class="w-full max-w-md md:max-w-4xl mx-auto bg-[#f5f3e7] rounded-2xl shadow-xl overflow-hidden h-[800px] md:h-[600px]">
         <!-- Main content area that will switch between slides -->
         <div class="flex flex-col h-full">
 
             <!-- Slide 1: Start Screen -->
-            <div id="slide-start" class="kiosk-screen active flex-col h-full justify-center items-center text-center p-8 bg-[#fdf1d5] text-[#ae0c34]">
+            <div id="slide-start" class="kiosk-screen active flex-col h-full justify-center items-center text-center p-8 bg-[#f5f3e7] text-[#ae0c34]">
                 <h1 class="text-5xl font-bold mb-4">Cereal Hub</h1>
                 <p class="text-xl mb-12">Your cereal adventure starts here.</p>
-                <button onclick="showSlide('slide-language')" class="bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-12 rounded-full text-2xl shadow-lg transition-transform transform hover:scale-105">
+                <button onclick="showSlide('slide-language')" class="bg-[#ae0c34] text-[#f5f3e7] font-bold py-4 px-12 rounded-full text-2xl shadow-lg transition-transform transform hover:scale-105">
                     Start / Bắt đầu
                 </button>
             </div>
@@ -50,7 +50,7 @@
                 <h2 class="text-3xl font-bold mb-8 text-[#ae0c34]">Choose your language</h2>
                 <!-- Responsive flex: col by default, row on 'md' screens -->
                 <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
-                    <button onclick="setLanguage('vi')" class="w-64 bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                    <button onclick="setLanguage('vi')" class="w-64 bg-[#ae0c34] text-[#f5f3e7] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
                         Tiếng Việt
                     </button>
                     <button onclick="setLanguage('en')" class="w-64 bg-white text-[#ae0c34] border border-[#ae0c34]/30 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
@@ -166,7 +166,7 @@
                         <span class="text-[#ae0c34]">Thành tiền:</span>
                         <span id="total-vi" class="text-[#ae0c34]">0 VND</span>
                     </div>
-                    <button id="checkout-btn-vi" onclick="showSlide('slide-payment-vi')" class="w-full bg-[#ae0c34] text-[#fdf1d5] font-bold py-5 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105 flex items-center justify-center space-x-2">
+                    <button id="checkout-btn-vi" onclick="showSlide('slide-payment-vi')" class="w-full bg-[#ae0c34] text-[#f5f3e7] font-bold py-5 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105 flex items-center justify-center space-x-2">
                         <span>Thanh toán</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -216,7 +216,7 @@
                         <span class="text-[#ae0c34]">Total:</span>
                         <span id="total-en" class="text-[#ae0c34]">0 VND</span>
                     </div>
-                    <button id="checkout-btn-en" onclick="showSlide('slide-payment-en')" class="w-full bg-[#ae0c34] text-[#fdf1d5] font-bold py-5 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105 flex items-center justify-center space-x-2">
+                    <button id="checkout-btn-en" onclick="showSlide('slide-payment-en')" class="w-full bg-[#ae0c34] text-[#f5f3e7] font-bold py-5 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105 flex items-center justify-center space-x-2">
                         <span>Checkout</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -235,7 +235,7 @@
                 <h2 class="text-3xl font-bold mb-8 text-[#ae0c34]">Phương thức thanh toán</h2>
                 <!-- Responsive flex: col by default, row on 'md' screens -->
                 <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
-                    <button onclick="showSlide('slide-qr-vi')" class="w-64 bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                    <button onclick="showSlide('slide-qr-vi')" class="w-64 bg-[#ae0c34] text-[#f5f3e7] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
                         Chuyển khoản
                     </button>
                     <button onclick="showSlide('slide-success-vi')" class="w-64 bg-white text-[#ae0c34] border border-[#ae0c34]/30 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
@@ -254,7 +254,7 @@
                 <h2 class="text-3xl font-bold mb-8 text-[#ae0c34]">Payment Method</h2>
                 <!-- Responsive flex: col by default, row on 'md' screens -->
                 <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
-                    <button onclick="showSlide('slide-qr-en')" class="w-64 bg-[#ae0c34] text-[#fdf1d5] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
+                    <button onclick="showSlide('slide-qr-en')" class="w-64 bg-[#ae0c34] text-[#f5f3e7] font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
                         Bank Transfer
                     </button>
                     <button onclick="showSlide('slide-success-en')" class="w-64 bg-white text-[#ae0c34] border border-[#ae0c34]/30 font-bold py-4 px-8 rounded-lg text-xl shadow-md transition-transform transform hover:scale-105">
@@ -386,7 +386,7 @@
             };
             // Clear all selections
             document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.classList.remove('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                btn.classList.remove('bg-[#ae0c34]', 'text-[#f5f3e7]', 'border-[#ae0c34]');
                 btn.classList.add('border-[#ae0c34]/30', 'text-[#ae0c34]');
             });
             updateTotal();
@@ -416,7 +416,7 @@
             for (let i = 1; i <= 3; i++) {
                 const btn = document.getElementById(milkPrefix + i);
                 if (btn) {
-                    btn.classList.remove('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                    btn.classList.remove('bg-[#ae0c34]', 'text-[#f5f3e7]', 'border-[#ae0c34]');
                     btn.classList.add('border-[#ae0c34]/30', 'text-[#ae0c34]');
                 }
             }
@@ -424,7 +424,7 @@
             // Highlight new selection
             const el = document.getElementById(elementId);
             if (el) {
-                el.classList.add('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                el.classList.add('bg-[#ae0c34]', 'text-[#f5f3e7]', 'border-[#ae0c34]');
                 el.classList.remove('border-[#ae0c34]/30', 'text-[#ae0c34]');
             }
             
@@ -441,12 +441,12 @@
             if (order.toppings[name]) {
                 // Remove topping
                 delete order.toppings[name];
-                el.classList.remove('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                el.classList.remove('bg-[#ae0c34]', 'text-[#f5f3e7]', 'border-[#ae0c34]');
                 el.classList.add('border-[#ae0c34]/30', 'text-[#ae0c34]');
             } else {
                 // Add topping
                 order.toppings[name] = price;
-                el.classList.add('bg-[#ae0c34]', 'text-[#fdf1d5]', 'border-[#ae0c34]');
+                el.classList.add('bg-[#ae0c34]', 'text-[#f5f3e7]', 'border-[#ae0c34]');
                 el.classList.remove('border-[#ae0c34]/30', 'text-[#ae0c34]');
             }
             updateTotal();
